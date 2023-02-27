@@ -34,7 +34,7 @@ pipeline {
     stage('Run docker on build server') {
       steps {
         sh 'ssh-keyscan -H moko1/build_image2 >> ~/.ssh/known_hosts'
-        sh '''ssh moko1/build_image << EOF
+        sh '''ssh moko1/build_image2 << EOF
 	sudo docker pull moko1/build_image2:5000/shop2-backend/gateway-api:2-staging
 	cd /etc/shop/docker
 	sudo docker-compose up -d
