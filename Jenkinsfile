@@ -2,7 +2,7 @@ pipeline {
   agent {
 
     docker {
-      image 'moko1/build_image:8000'
+      image 'moko1/build_image:8080'
     }
 
   }
