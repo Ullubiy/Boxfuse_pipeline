@@ -7,8 +7,8 @@ RUN apt-get update
 RUN apt-get -y install openssh-client
 
 # Confugure ssh client
-COPY id_rsa /boxfuse
-RUN chmod 600 /boxfuse/id_rsa
+COPY id_rsa /boxfuse/id_rsa
+RUN chmod 755 /boxfuse/id_rsa
 
 # Install gradle 4.2.1
 RUN mkdir /opt/gradle && \
