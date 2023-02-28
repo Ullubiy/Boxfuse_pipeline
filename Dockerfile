@@ -7,7 +7,3 @@ RUN apt install default-jdk -y
 RUN apt install maven -y
 RUN apt install git -y
 CMD ["mvn","-f","/app/pom.xml", "clean", "package"]
-
-
-
-
