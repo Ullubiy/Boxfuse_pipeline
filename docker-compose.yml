@@ -11,8 +11,8 @@ services:
         target: /app
 
   deploy-project-prod:
-    container_name: app-deploy-project
-    image: ubuntu:18.04
+    container_name: deploy-project
+    image: maven:3.8.7
     working_dir: /app
     volumes:
       - type: volume
