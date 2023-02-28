@@ -12,21 +12,20 @@ pipeline {
     stage('Copy source with configs') {
       steps {
         git(url: 'https://github.com/Ullubiy/boxfuse.git', branch: 'master', poll: true, credentialsId: 'git')
-        sh 'ssh-keyscan -H moko1/build_image2 >> ~/.ssh/known_hosts'
-        sh 'scp moko1/build_image2:/home/jenkins/build/configs/staging/gateway-api/application-business-config-defaults.yml gateway-api/src/main/resources/application-business-config-defaults.yml'
-      }
+        
+              }
     }
 
-    stage('Build jar') {
+    stage('Build war') {
       steps {
-        sh 'gradle bootRepackage'
+        sh 'mvn package'
       }
     }
 
     stage('Make docker image') {
       steps {
-        sh 'cp -R gateway-api/build/libs/* docker-setup/shop/gateway-api && cd docker-setup/shop/gateway-api && docker build --tag=gateway-api .'
-        sh '''docker tag gateway-api moko1/build_image2:5000/shop2-backend/gateway-api:2-staging && docker push moko1/build_image2:5000/shop2-backend/gateway-api:2-staging'''
+        sh 'cp -R gateway-api/build/libs/* docker-setup/gateway-api && cd docker-setup/gateway-api && docker build --tag=gateway-api .'
+        sh '''docker tag gateway-api moko1/build_image2:5000/gateway-api:2-staging && docker push moko1/build_image2:5000/gateway-api:2-staging'''
 
       }
     }
